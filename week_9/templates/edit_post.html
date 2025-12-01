@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Post - Personal Blog{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <h1>Edit Post</h1>
+        <p>Update your post content</p>
+    </div>
+    
+    <form method="POST" class="post-form">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" class="form-control" value="{{ post.title }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" class="form-control" value="{{ post.author }}">
+        </div>
+        
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea id="content" name="content" class="form-control" rows="15" required>{{ post.content }}</textarea>
+        </div>
+        
+        <div class="form-actions">
+            <a href="{{ url_for('post_detail', post_id=post.id) }}" class="btn-secondary">Cancel</a>
+            <button type="submit" class="btn-primary">Update Post</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
