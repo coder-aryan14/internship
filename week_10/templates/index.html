@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Personal Blog{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <h1 class="hero-title">Welcome to My Blog</h1>
+    <p class="hero-subtitle">
+        {% if search_query %}
+            Showing results for "<strong>{{ search_query }}</strong>"
+        {% else %}
+            Thoughts, ideas, and stories worth sharing
+        {% endif %}
+    </p>
+</div>
+
+<div class="posts-section">
+    {% if posts %}
+        <div class="posts-grid">
+            {% for post in posts %}
+            <article class="post-card">
+                <div class="post-card-header">
+                    <h2 class="post-title">
+                        <a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}</a>
+                    </h2>
+                    <div class="post-meta">
+                        <span class="post-author">{{ post.author }}</span>
+                        <span class="post-date">{{ post.created_at.strftime('%B %d, %Y') }}</span>
+                    </div>
+                </div>
+                <div class="post-card-body">
+                    {% if post.category or post.tags %}
+                        <div class="post-meta-line">
+                            {% if post.category %}
+                                <span class="post-category">{{ post.category.name }}</span>
+                            {% endif %}
+                            {% if post.tags %}
+                                <span class="post-tags-inline">
+                                    {% for tag in post.tags %}
+                                        <span class="tag-pill">{{ tag.name }}</span>
+                                    {% endfor %}
+                                </span>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    <p class="post-excerpt">{{ post.content[:200] }}{% if post.content|length > 200 %}...{% endif %}</p>
+                </div>
+                <div class="post-card-footer">
+                    <a href="{{ url_for('post_detail', post_id=post.id) }}" class="btn-read-more">Read More</a>
+                    <div class="post-actions">
+                        {% if current_user.is_authenticated and (current_user.is_admin or post.author_id == current_user.id) %}
+                            <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn-edit">Edit</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+        {% if pagination %}
+        <div class="pagination">
+            {% if pagination.has_prev %}
+                <a class="page-link" href="{{ url_for('index', page=pagination.prev_num, q=search_query) }}">&larr; Newer</a>
+            {% else %}
+                <span class="page-link disabled">&larr; Newer</span>
+            {% endif %}
+
+            <span class="page-info">
+                Page {{ pagination.page }} of {{ pagination.pages if pagination.pages > 0 else 1 }}
+            </span>
+
+            {% if pagination.has_next %}
+                <a class="page-link" href="{{ url_for('index', page=pagination.next_num, q=search_query) }}">Older &rarr;</a>
+            {% else %}
+                <span class="page-link disabled">Older &rarr;</span>
+            {% endif %}
+        </div>
+        {% endif %}
+    {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">📝</div>
+            {% if search_query %}
+                <h2>No posts match your search</h2>
+                <p>Try a different keyword or clear the search box.</p>
+                <a href="{{ url_for('index') }}" class="btn-secondary">Clear search</a>
+            {% else %}
+                <h2>No posts yet</h2>
+                <p>Start sharing your thoughts by creating your first blog post!</p>
+                <a href="{{ url_for('create_post') }}" class="btn-primary">Create Your First Post</a>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+

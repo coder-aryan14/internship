@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Create New Post - Personal Blog{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <h1>Create New Post</h1>
+        <p>Share your thoughts and ideas with the world</p>
+    </div>
+    
+    <form method="POST" class="post-form">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" class="form-control" placeholder="Enter post title" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" class="form-control" placeholder="Your name (optional)" value="{{ current_user.username }}">
+        </div>
+
+        <div class="form-group two-column">
+            <div>
+                <label for="category">Category</label>
+                <input type="text" id="category" name="category" class="form-control" placeholder="e.g. Technology, Lifestyle">
+            </div>
+            <div>
+                <label for="tags">Tags</label>
+                <input type="text" id="tags" name="tags" class="form-control" placeholder="Comma separated, e.g. flask, python, web">
+            </div>
+        </div>
+
+        <div class="form-group two-column">
+            <div>
+                <label for="status">Status</label>
+                <select id="status" name="status" class="form-control">
+                    <option value="published">Published</option>
+                    <option value="draft">Draft / Scheduled</option>
+                </select>
+            </div>
+            <div>
+                <label for="scheduled_for">Schedule (optional)</label>
+                <input type="datetime-local" id="scheduled_for" name="scheduled_for" class="form-control">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea id="content" name="content" class="form-control" rows="15" placeholder="Write your post content here..." required></textarea>
+        </div>
+        
+        <div class="form-actions">
+            <a href="{{ url_for('index') }}" class="btn-secondary">Cancel</a>
+            <button type="submit" class="btn-primary">Save Post</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+

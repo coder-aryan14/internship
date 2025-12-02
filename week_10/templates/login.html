@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Personal Blog{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <h1>Welcome back</h1>
+        <p>Log in to manage your posts and comments</p>
+    </div>
+
+    <form method="POST" class="post-form">
+        <div class="form-group">
+            <label for="username">Username or Email</label>
+            <input type="text" id="username" name="username" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('index') }}" class="btn-secondary">Cancel</a>
+            <button type="submit" class="btn-primary">Login</button>
+        </div>
+    </form>
+
+    <p style="margin-top: 1.5rem; text-align: center;">
+        Don't have an account?
+        <a href="{{ url_for('register') }}">Create one</a>.
+    </p>
+</div>
+{% endblock %}
+
+
