@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<article class="card">
+  <h2>My orders</h2>
+  {% if not orders %}
+  <p>You have no orders yet.</p>
+  {% else %}
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Status</th>
+        <th>Summary</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+      <tr>
+        <td><code>{{ order.id[:8] }}</code></td>
+        <td>{{ order.status.value }}</td>
+        <td>{{ order.summary() }}</td>
+        <td>₹ {{ "%.2f"|format(order.subtotal) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+  <footer style="margin-top:1rem;">
+    <a href="/" role="button" class="secondary">Back to store</a>
+  </footer>
+</article>
+{% endblock %}
+
+
+

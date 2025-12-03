@@ -1,0 +1,169 @@
+{
+  "users": {
+    "admin": {
+      "id": "dae40956-83c7-4f66-9d1f-c6d5bfcec2a6",
+      "username": "admin",
+      "full_name": "Admin User",
+      "_password_hash": "dfb3d558a9bd3de0$23af0073f0bb595acc239c8df2fc2f450e36ec1ccd38580390cc53b5802ebaac",
+      "active": true,
+      "role": "admin",
+      "failed_attempts": 0
+    },
+    "alice": {
+      "id": "88754a98-6413-4106-bd34-02f8e91040e1",
+      "username": "alice",
+      "full_name": "Alice Customer",
+      "_password_hash": "32a3b0747cb46b26$14f18dd9a859d582e2574e3c53ceed2add4b84ac6fb320856e47c3ea389fac95",
+      "active": true,
+      "role": "customer",
+      "shipping_address": "",
+      "failed_attempts": 0
+    }
+  },
+  "categories": {
+    "e5956c75-69a1-4114-9a3a-bcc534016f30": {
+      "id": "e5956c75-69a1-4114-9a3a-bcc534016f30",
+      "name": "Electronics",
+      "description": "Devices and gadgets",
+      "created_at": "2025-12-03T07:25:57.201679+00:00",
+      "updated_at": "2025-12-03T07:25:57.201704+00:00"
+    },
+    "b80adcb7-e7b6-40ca-9742-69ebe924cd7e": {
+      "id": "b80adcb7-e7b6-40ca-9742-69ebe924cd7e",
+      "name": "Groceries",
+      "description": "Daily essentials",
+      "created_at": "2025-12-03T07:25:57.266206+00:00",
+      "updated_at": "2025-12-03T07:25:57.266244+00:00"
+    },
+    "7d33648e-975d-4a56-a0e7-cb81a276a77c": {
+      "id": "7d33648e-975d-4a56-a0e7-cb81a276a77c",
+      "name": "Electronics",
+      "description": "Devices and gadgets",
+      "created_at": "2025-12-03T07:30:16.439553+00:00",
+      "updated_at": "2025-12-03T07:30:16.439553+00:00"
+    },
+    "0bce532d-1650-493b-8308-f01da046d14d": {
+      "id": "0bce532d-1650-493b-8308-f01da046d14d",
+      "name": "Groceries",
+      "description": "Daily essentials",
+      "created_at": "2025-12-03T07:30:16.440992+00:00",
+      "updated_at": "2025-12-03T07:30:16.441000+00:00"
+    }
+  },
+  "products": {
+    "692655f9-abbd-4211-b0d5-c6f92cd42b4a": {
+      "id": "692655f9-abbd-4211-b0d5-c6f92cd42b4a",
+      "name": "Smartphone X",
+      "price": "699.99",
+      "stock": 8,
+      "category_id": "e5956c75-69a1-4114-9a3a-bcc534016f30",
+      "description": "",
+      "metadata": {},
+      "created_at": "2025-12-03T07:25:57.341428+00:00",
+      "updated_at": "2025-12-03T07:25:57.709098+00:00"
+    },
+    "72dea2cc-0557-49d5-968b-0b7cf44d3ef5": {
+      "id": "72dea2cc-0557-49d5-968b-0b7cf44d3ef5",
+      "name": "Organic Rice 5kg",
+      "price": "12.50",
+      "stock": 48,
+      "category_id": "b80adcb7-e7b6-40ca-9742-69ebe924cd7e",
+      "description": "",
+      "metadata": {},
+      "created_at": "2025-12-03T07:25:57.423684+00:00",
+      "updated_at": "2025-12-03T07:25:57.569063+00:00"
+    },
+    "0743f9e2-6e8f-45d7-bd67-1c49589695fc": {
+      "id": "0743f9e2-6e8f-45d7-bd67-1c49589695fc",
+      "name": "Smartphone X",
+      "price": "699.99",
+      "stock": 8,
+      "category_id": "7d33648e-975d-4a56-a0e7-cb81a276a77c",
+      "description": "",
+      "metadata": {},
+      "created_at": "2025-12-03T07:30:16.507481+00:00",
+      "updated_at": "2025-12-03T07:30:16.817933+00:00"
+    },
+    "eeec5627-080d-4c72-9c1d-cbe89b4bfd5a": {
+      "id": "eeec5627-080d-4c72-9c1d-cbe89b4bfd5a",
+      "name": "Organic Rice 5kg",
+      "price": "12.50",
+      "stock": 48,
+      "category_id": "0bce532d-1650-493b-8308-f01da046d14d",
+      "description": "",
+      "metadata": {},
+      "created_at": "2025-12-03T07:30:16.571069+00:00",
+      "updated_at": "2025-12-03T07:30:16.690127+00:00"
+    }
+  },
+  "orders": {
+    "47aaf8f3-fe47-4a2a-b99c-a6e742fe537f": {
+      "id": "47aaf8f3-fe47-4a2a-b99c-a6e742fe537f",
+      "user_id": "88754a98-6413-4106-bd34-02f8e91040e1",
+      "items": [
+        {
+          "product_id": "692655f9-abbd-4211-b0d5-c6f92cd42b4a",
+          "quantity": 1
+        },
+        {
+          "product_id": "72dea2cc-0557-49d5-968b-0b7cf44d3ef5",
+          "quantity": 2
+        }
+      ],
+      "status": "paid",
+      "payment_reference": "UPI-7e572dc712",
+      "subtotal": "724.99",
+      "created_at": "2025-12-03T07:25:57.639279+00:00",
+      "updated_at": "2025-12-03T07:25:57.639365+00:00"
+    },
+    "1226a14a-a47c-461f-b038-1519270f2980": {
+      "id": "1226a14a-a47c-461f-b038-1519270f2980",
+      "user_id": "88754a98-6413-4106-bd34-02f8e91040e1",
+      "items": [
+        {
+          "product_id": "692655f9-abbd-4211-b0d5-c6f92cd42b4a",
+          "quantity": 1
+        }
+      ],
+      "status": "paid",
+      "payment_reference": "VISA-b8b7c583",
+      "subtotal": "699.99",
+      "created_at": "2025-12-03T07:25:57.780479+00:00",
+      "updated_at": "2025-12-03T07:25:57.855194+00:00"
+    },
+    "dbd628e5-1ede-4ad3-95be-25e14da35e8c": {
+      "id": "dbd628e5-1ede-4ad3-95be-25e14da35e8c",
+      "user_id": "88754a98-6413-4106-bd34-02f8e91040e1",
+      "items": [
+        {
+          "product_id": "0743f9e2-6e8f-45d7-bd67-1c49589695fc",
+          "quantity": 1
+        },
+        {
+          "product_id": "eeec5627-080d-4c72-9c1d-cbe89b4bfd5a",
+          "quantity": 2
+        }
+      ],
+      "status": "paid",
+      "payment_reference": "UPI-059a10069c",
+      "subtotal": "724.99",
+      "created_at": "2025-12-03T07:30:16.756582+00:00",
+      "updated_at": "2025-12-03T07:30:16.757205+00:00"
+    },
+    "cf41955b-4366-45d4-b031-104f4e9f8adf": {
+      "id": "cf41955b-4366-45d4-b031-104f4e9f8adf",
+      "user_id": "88754a98-6413-4106-bd34-02f8e91040e1",
+      "items": [
+        {
+          "product_id": "0743f9e2-6e8f-45d7-bd67-1c49589695fc",
+          "quantity": 1
+        }
+      ],
+      "status": "paid",
+      "payment_reference": "VISA-009c3e88",
+      "subtotal": "699.99",
+      "created_at": "2025-12-03T07:30:16.883424+00:00",
+      "updated_at": "2025-12-03T07:30:16.947431+00:00"
+    }
+  }
+}

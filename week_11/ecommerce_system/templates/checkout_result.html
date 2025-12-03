@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<article class="card">
+  <h2>Order placed</h2>
+  <p><strong>Status:</strong> {{ order.status.value }}</p>
+  <p><strong>Items:</strong> {{ order.summary() }}</p>
+  <p><strong>Total:</strong> ₹ {{ "%.2f"|format(order.subtotal) }}</p>
+
+  {% if receipt %}
+    <p><strong>Payment reference:</strong> {{ receipt.reference }}</p>
+    {% if receipt.metadata.handle %}
+      <p>UPI handle: <code>{{ receipt.metadata.handle }}</code></p>
+    {% endif %}
+    {% if receipt.metadata.bank %}
+      <p>Bank: <code>{{ receipt.metadata.bank }}</code></p>
+    {% endif %}
+    {% if receipt.metadata.instructions %}
+      <p>{{ receipt.metadata.instructions }}</p>
+    {% endif %}
+    {% if receipt.metadata.challenge == "otp" and receipt.metadata.otp %}
+      <p>
+        <strong>Demo OTP (for this card transaction):</strong>
+        <code>{{ receipt.metadata.otp }}</code>
+      </p>
+      <form method="post" action="/payments/{{ receipt.reference }}/confirm">
+        <input type="hidden" name="otp" value="{{ receipt.metadata.otp }}" />
+        <button type="submit">Confirm payment with OTP</button>
+      </form>
+    {% endif %}
+  {% endif %}
+
+  <footer style="margin-top:1rem;">
+    <a href="/" role="button" class="secondary">Back to store</a>
+    <a href="/orders/me" role="button">View my orders</a>
+  </footer>
+</article>
+{% endblock %}
+
+
+

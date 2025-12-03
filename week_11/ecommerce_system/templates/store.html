@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<header style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+  <div>
+    <h2>Storefront</h2>
+    <p>Browse products, add them to your cart, and checkout with UPI, card, bank transfer, or COD.</p>
+  </div>
+  <a href="/cart/view" role="button" class="secondary">View cart</a>
+</header>
+
+{% if not products %}
+<p>No products available yet. Log in as admin to add some.</p>
+{% else %}
+<div class="grid-3">
+  {% for product in products %}
+  <article class="card">
+    <header style="display:flex;justify-content:space-between;align-items:center;">
+      <h3>{{ product.name }}</h3>
+      <span class="badge">
+        {% for cat in categories %}
+          {% if cat.id == product.category_id %}
+            {{ cat.name }}
+          {% endif %}
+        {% endfor %}
+      </span>
+    </header>
+    <p style="min-height:3rem;">{{ product.description or "No description" }}</p>
+    <p class="price">₹ {{ "%.2f"|format(product.price) }}</p>
+    <p style="font-size:0.85rem;color:var(--muted-color);">
+      In stock: {{ product.stock }}
+    </p>
+    {% if current_user %}
+    <form method="post" action="/store/add-to-cart">
+      <input type="hidden" name="product_id" value="{{ product.id }}" />
+      <label>
+        Quantity
+        <input name="quantity" type="number" min="1" max="{{ product.stock }}" value="1" />
+      </label>
+      <button type="submit" {% if product.stock <= 0 %}disabled{% endif %}>Add to cart</button>
+    </form>
+    {% else %}
+    <p><a href="/login">Login to purchase</a></p>
+    {% endif %}
+  </article>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
+
+
+
